@@ -1,5 +1,4 @@
 const { celebrate, Joi } = require('celebrate');
-// const urlPattern = require('../constants');
 
 const updateUserProfileValidation = celebrate({
   body: Joi.object().keys({
