@@ -1,6 +1,6 @@
 require('dotenv').config();
 
-(process.env.NODE_ENV); // production
+console.log(process.env.NODE_ENV); // production
 
 const express = require('express');
 const mongoose = require('mongoose');
@@ -19,8 +19,8 @@ app.use(cors());
 mongoose.connect('mongodb://127.0.0.1:27017/bitfilmsdb', {
   useNewUrlParser: true,
 })
-  .then(() => ('MongoDB connected'))
-  .catch((err) => (`MongoDB connection error: ${err}`));
+  .then(() => console.log('MongoDB connected'))
+  .catch((err) => console.log(`MongoDB connection error: ${err}`));
 
 app.use(requestLogger);
 
@@ -38,5 +38,5 @@ app.use(errors());
 app.use(errorHandler);
 
 app.listen(PORT, () => {
-  (`Server started on port ${PORT}`);
+  console.log(`Server started on port ${PORT}`);
 });
