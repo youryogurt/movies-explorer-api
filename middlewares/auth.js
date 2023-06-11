@@ -1,6 +1,5 @@
 const jwt = require('jsonwebtoken');
 const UnauthorizedError = require('../errors/unauthorized-err');
-// создать этот файл на сервере
 const secretKey = require('../config');
 
 module.exports = (req, res, next) => {

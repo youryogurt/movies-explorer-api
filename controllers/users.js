@@ -3,7 +3,6 @@ const jwt = require('jsonwebtoken');
 
 const { NODE_ENV, JWT_SECRET } = process.env;
 const User = require('../models/user');
-// нужно будет создать этот файл именно на сервере
 const secretKey = require('../config');
 
 const BadRequestError = require('../errors/bad-request-err');
@@ -48,6 +47,7 @@ const createUser = (req, res, next) => {
   const {
     email, name, password,
   } = req.body;
+  // console.log(req.body);
   bcrypt.hash(password, 10)
     .then((hash) => User.create({
       email,
