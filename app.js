@@ -3,14 +3,19 @@ require('dotenv').config();
 console.log(process.env.NODE_ENV); // production
 
 const express = require('express');
+const helmet = require('helmet');
 const mongoose = require('mongoose');
 const { errors } = require('celebrate');
 const cors = require('cors');
 const routes = require('./routes/index');
 const errorHandler = require('./middlewares/errorHandler');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
+const rateLimiter = require('./middlewares/rateLimiter');
 
 const app = express();
+app.use(helmet());
+app.use(rateLimiter);
+
 const { PORT = 3000 } = process.env;
 
 app.use(express.json());
