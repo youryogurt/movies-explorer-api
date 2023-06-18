@@ -5,13 +5,13 @@ const ForbiddenError = require('../errors/forbidden-err');
 const NotFoundError = require('../errors/not-found-err');
 const { BadRequestErrorAnswer, ForbiddenErrorAnswer, NotFoundErrorAnswer } = require('../constants');
 
-const getSavedMovies = async (req, res, next) => {
-  try {
-    const movies = await Movie.find({});
-    res.send(movies);
-  } catch (err) {
-    next(err);
-  }
+const getSavedMovies = (req, res, next) => {
+  Movie.find({ owner: req.user._id })
+    // .populate(['owner'])
+    .then((movies) => res.send(movies))
+    .catch((err) => {
+      next(err);
+    });
 };
 
 const createMovie = (req, res, next) => {

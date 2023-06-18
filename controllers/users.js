@@ -24,6 +24,8 @@ const updateUserProfile = (req, res, next) => {
     .catch((err) => {
       if (err.name === 'ValidationError') {
         next(new BadRequestError(BadRequestErrorAnswer));
+      } else if (err.code === 11000) {
+        next(new ConflictError(ConflictErrorAnswer));
       } else {
         next(err);
       }
