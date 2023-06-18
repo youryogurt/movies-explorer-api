@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
 const UnauthorizedError = require('../errors/unauthorized-err');
-const UnauthorizedErrorAnswer = require('../constants');
+const { UnauthorizedErrorAnswer } = require('../constants');
 
 const secretKey = require('../config');
 

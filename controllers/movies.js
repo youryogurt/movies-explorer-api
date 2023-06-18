@@ -29,7 +29,6 @@ const createMovie = (req, res, next) => {
     nameRU,
     nameEN,
   } = req.body;
-  console.log(req.body);
   Movie.create({
     country,
     director,
